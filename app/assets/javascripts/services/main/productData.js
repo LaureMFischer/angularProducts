@@ -8,10 +8,9 @@ angular.module('StoreFront').factory('productData',['$http', function($http){
     ]};
 
     // method to get all the products.
-    productData.loadProducts = function(){
+    productData.loadProducts = function(callback){
         $http.get('./products.json').success(function(data){
-            // assign JSON from remote service.
-            productData.products = data.products;
+            callback(data);
             console.log('Successfully loaded products');
         })
         .error(function(){

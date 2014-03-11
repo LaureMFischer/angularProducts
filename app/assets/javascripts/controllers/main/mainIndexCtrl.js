@@ -5,8 +5,11 @@
     //     {"name": "Frisbee", "description": "Silver with a gerbil taped to it" ,  "price": 7.63 }
     // ];
 
-    $scope.data = productData;
-    productData.loadProducts();
+    $scope.data = {};
+    productData.loadProducts(function(data){
+        $scope.data.products = data.products;
+    });
+
 
     $scope.viewPost = function(productId){
         $location.url('/product/' + productId);
