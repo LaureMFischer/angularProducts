@@ -32,14 +32,14 @@ StoreFront.config(["$httpProvider", function(provider){
   }];
   provider.responseInterceptors.push(interceptor);
 }]);
-
+//Note: The order of routes matters; it will match the first one it finds;
+//Need default route to be last
 StoreFront.config(['$routeProvider', function($routeProvider){
-  // Default Route
-  $routeProvider.otherwise({
-      templateUrl: '../assets/mainIndex.html',
-      controller: 'IndexCtrl'
-  });
 
+  $routeProvider.when('/products/new',{
+    templateUrl: '../assets/mainCreatePost.html',
+    controller: 'CreateProductCtrl'
+  });
   // Route to retrieve one product
   // '/product/:productId
   $routeProvider.when('/product/:productId',{
@@ -47,8 +47,9 @@ StoreFront.config(['$routeProvider', function($routeProvider){
       controller: 'ProductCtrl'
   });
 
-  $routeProvider.when('/products/new',{
-    templateUrl: '../assets/mainCreatePost.html',
-    controller: 'CreateProductCtrl'
+    // Default Route
+  $routeProvider.otherwise({
+      templateUrl: '../assets/mainIndex.html',
+      controller: 'IndexCtrl'
   });
 }]);

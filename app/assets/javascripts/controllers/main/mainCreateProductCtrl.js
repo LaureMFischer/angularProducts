@@ -13,9 +13,12 @@ var CreateProductCtrl = function($scope, $location, productData){
   };
 
   $scope.createProduct = function(){
-    console.log($scope.formData);
-    productData.createProduct($scope.formData);
-    $location.url('/');
+    productData.createProduct($scope.formData, function(data){
+      productData.products.push(data.product);
+      console.log("Successfully created a new product");
+        // go to the main products page
+      $location.url('/');
+    })
   };
 
   $scope.clearForm = function(){
