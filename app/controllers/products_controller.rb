@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
 
-    # GET /articles.json
   def index
     @products = Product.all
     render json: @products
@@ -24,9 +23,7 @@ class ProductsController < ApplicationController
      return
     end
 
-    respond_with(new_product) do |format|
-     format.json {render :json => new_product}
-    end
+    render json: new_product
 
   end
 end

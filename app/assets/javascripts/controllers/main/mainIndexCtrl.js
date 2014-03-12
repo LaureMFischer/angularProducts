@@ -16,6 +16,6 @@
     };
 
     $scope.navNewProduct = function(){
-        $location.url('/product/new');
+        $location.url('/products/new');
     };
 };

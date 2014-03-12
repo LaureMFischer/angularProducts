@@ -30,28 +30,28 @@ angular.module('StoreFront').factory('productData',['$http', function($http){
     };
 
     productData.createProduct = function(newProduct){
-    if(newProduct.newProductName == '' || newProduct.newProductdescription == '' || newProduct.newProductPrice == ''){
-      alert("Name, Description or Price is blank!");
-      return false;
-    }
+      if(newProduct.newProductName == '' || newProduct.newProductdescription == '' || newProduct.newProductPrice == ''){
+        alert("Name, Description or Price is blank!");
+        return false;
+      }
 
-    var data = {new_product: {
-      name: newProduct.newProductName,
-      description: newProduct.newProductDescription,
-      price: newProduct.newProductPrice,
-    }};
+      var data = {new_product: {
+        name: newProduct.newProductName,
+        description: newProduct.newProductDescription,
+        price: newProduct.newProductPrice,
+      }};
 
-    $http.post('./products.json', data).
-      success(function(data){
-        productData.products.push(data);
-        console.log("Successfully created a new product");
-      }).
-      error(function(){
-        console.error("Failed to create a new product");
-       });
+      $http.post('./products.json', data)
+        .success(function(data){
+          productData.products.push(data);
+          console.log("Successfully created a new product");
+        })
+        .error(function(){
+          console.error("Failed to create a new product");
+         });
 
-    return true;
-  };
+      return true;
+    };
     // return the productData
     return productData;
 }]);
