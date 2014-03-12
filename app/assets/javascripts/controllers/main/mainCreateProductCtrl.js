@@ -11,16 +11,14 @@ var CreateProductCtrl = function($scope, $location, productData){
   $scope.navNewProduct = function(){
     $location.url('/products/new');
   };
-  $scope.navHome = function(){
-    $location.url('/');
-  };
 
   $scope.createProduct = function(){
     console.log($scope.formData);
     productData.createProduct($scope.formData);
+    $location.url('/');
   };
 
-  $scope.clearProduct = function(){
+  $scope.clearForm = function(){
     $scope.formData.newProductName = '';
     $scope.formData.newProductDescription = '';
     $scope.formData.newProductPrice = '';

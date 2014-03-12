@@ -29,7 +29,7 @@ angular.module('StoreFront').factory('productData',['$http', function($http){
             });
     };
 
-    productData.createProduct = function(newProduct){
+    productData.createProduct = function(newProduct, callback){
       if(newProduct.newProductName == '' || newProduct.newProductdescription == '' || newProduct.newProductPrice == ''){
         alert("Name, Description or Price is blank!");
         return false;
@@ -43,7 +43,7 @@ angular.module('StoreFront').factory('productData',['$http', function($http){
 
       $http.post('./products.json', data)
         .success(function(data){
-          productData.products.push(data);
+          callback(data);
           console.log("Successfully created a new product");
         })
         .error(function(){

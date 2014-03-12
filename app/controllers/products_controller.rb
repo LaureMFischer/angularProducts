@@ -11,10 +11,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    new_product = Product.new
-    new_product.name = params[:new_product][:name]
-    new_product.description = params[:new_product][:description]
-    new_product.price = params[:new_product][:price]
+    new_product = Product.new(product_params)
 
     if(new_product.valid?)
      new_product.save!
@@ -22,8 +19,12 @@ class ProductsController < ApplicationController
      render 'public/422', :status => 422
      return
     end
-
     render json: new_product
+  end
 
+  private
+
+  def product_params
+    params.require(:new_product).permit(:name, :description, :price)
   end
 end

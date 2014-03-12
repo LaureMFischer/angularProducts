@@ -21,6 +21,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'quiet_assets'
 gem 'angularjs-rails'
 gem 'active_model_serializers'
+gem 'jquery-rails'
 
 
 group :doc do
